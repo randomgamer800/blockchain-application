@@ -3,8 +3,6 @@ pragma solidity ^0.8.0;
 
 contract ExamContract {
     address public owner;
-    uint public startTime;
-    uint public endTime;
     bool public examStarted;
 
     modifier onlyOwner() {
@@ -17,10 +15,8 @@ contract ExamContract {
         examStarted = false;
     }
 
-    function startExam(uint duration) public onlyOwner {
+    function startExam() public onlyOwner {
         require(!examStarted, "Exam has already started");
-        startTime = block.timestamp;
-        endTime = startTime + duration;
         examStarted = true;
     }
 
@@ -29,8 +25,4 @@ contract ExamContract {
         examStarted = false;
     }
 
-    function getTimeTaken() public view returns (uint) {
-        require(!examStarted, "Exam is still in progress");
-        return endTime - startTime;
-    }
 }

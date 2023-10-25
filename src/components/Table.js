@@ -1,5 +1,6 @@
 //table to display student's results to teachers
-import * as React from 'react';
+import React from 'react';
+import { useForm } from 'react-hook-form'; //library to handle form submissions
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -11,8 +12,9 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
 import SendIcon from '@mui/icons-material/Send';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import Stack from '@mui/material/Stack';
-import { Typography } from '@mui/material';
+import { Input, Typography } from '@mui/material';
 
 function createData(name, calories, fat, carbs, protein) {
   return { name, calories, fat, carbs, protein };
@@ -25,6 +27,7 @@ const rows = [
 ];
 
 export default function DenseTable() {
+  const { upload, handleupload } = useForm()
   return (
     <Paper style={{ background: '#ff7f50', minHeight: '100vh'}}> {/*paper element is used to colour the background*/}
     <Box paddingTop='100px' paddingRight='20px' paddingLeft='20px'>
@@ -58,14 +61,9 @@ export default function DenseTable() {
       </Table>
     </TableContainer>
 
-    <Stack  paddingTop='100px' direction="row" spacing={2}>
-      <Button variant="outlined" startIcon={<DeleteIcon />}>
-        Delete
-      </Button>
-      <Button variant="contained" endIcon={<SendIcon />}>
-        Send
-      </Button>
-      <Button variant="contained">
+    <Stack paddingTop='30px' spacing={3} direction="column" justifyContent="center" alignItems="center">
+      <Input ref={upload} type='file' name='document'></Input>
+      <Button variant="contained" startIcon={<CloudUploadIcon />}>
         Upload
       </Button>
       <Typography>

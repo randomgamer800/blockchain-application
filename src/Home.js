@@ -1,7 +1,7 @@
 //this file is for the home page display
 import React from 'react'
 import Box from '@mui/material/Box';
-import { Paper, Typography } from '@mui/material';
+import { Paper, Typography,Button, Stack } from '@mui/material';
 
 const Home = () => {
 

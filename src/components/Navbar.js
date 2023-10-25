@@ -19,6 +19,7 @@ import ContactPageIcon from '@mui/icons-material/ContactPage';
 import QuizIcon from '@mui/icons-material/Quiz';
 import LockIcon from '@mui/icons-material/Lock';
 import {BrowserRouter as Router} from "react-router-dom";
+import { Button, Stack } from '@mui/material';
 
 const drawerWidth = 240;
 
@@ -30,6 +31,25 @@ function Navbar(props) {
     setMobileOpen(!mobileOpen);
   }; //settings to deal with how the sidebar opens
 
+
+    const handleListItemClick = () => {
+      if (mobileOpen) {
+        setMobileOpen(false);
+      }
+    }; //closes the sidebar once user selects a page
+
+    const [teachers, setTeachers] = React.useState(false); // Initial state, for hiding teachers view
+
+    const handleStudentClick = () => {
+      // Hide the Teacher's View when the Student button is clicked
+      setTeachers(false);
+    };
+  
+    const handleTeacherClick = () => {
+      // Show the Teacher's View when the Teacher button is clicked
+      setTeachers(true);
+    }; //by right a login system, but due to time constraints, this is put in place
+
   const drawer = (
     <div>
       <Toolbar />
@@ -38,7 +58,7 @@ function Navbar(props) {
       <Router>{/*router is neccesary to ensure proper page handling*/}
 
 
-        <ListItem disablePadding> 
+        <ListItem disablePadding onClick={handleListItemClick}> 
           <ListItemButton Link to="/blockchain-application/#/"> {/*direct users to relevant page*/}
             <ListItemIcon>
               <HomeIcon /> {/*displayed icon beside name*/}
@@ -47,7 +67,7 @@ function Navbar(props) {
           </ListItemButton>
         </ListItem>
 
-        <ListItem disablePadding>
+        <ListItem disablePadding onClick={handleListItemClick}>
           <ListItemButton Link to="/blockchain-application/#/exam">
             <ListItemIcon>
               <QuizIcon />
@@ -56,7 +76,7 @@ function Navbar(props) {
           </ListItemButton>
         </ListItem>
 
-        <ListItem disablePadding>
+        <ListItem disablePadding onClick={handleListItemClick}>
           <ListItemButton Link to="/blockchain-application/#/contact">
             <ListItemIcon>
               <ContactPageIcon />
@@ -67,14 +87,17 @@ function Navbar(props) {
 
         <Divider />
 
-        <ListItem disablePadding>
+        {teachers && ( // Conditionally render the "Teachers View" list item based on button click
+        <ListItem disablePadding onClick={handleListItemClick}>
           <ListItemButton Link to="/blockchain-application/#/teachers">
             <ListItemIcon>
               <LockIcon />
             </ListItemIcon>
-              <ListItemText primary="Teachers View" />
+            <ListItemText primary="Teachers View" />
           </ListItemButton>
         </ListItem>
+      )}
+  
 
       </Router>
       </List>
@@ -103,6 +126,7 @@ function Navbar(props) {
           <Typography variant="h6" noWrap component="div">
             Examchain
           </Typography>
+
         </Toolbar> {/*toolbar configuration*/}
       </AppBar>
       <Box
@@ -125,6 +149,12 @@ function Navbar(props) {
           }}
         >
           {drawer}
+          <Stack direction="row" spacing={2}  justifyContent="center" alignItems="center" paddingTop='100px'>
+          <Button variant="contained" onClick={handleStudentClick}>Student</Button>
+          <Button variant="contained" onClick={handleTeacherClick}>Teacher</Button>
+          {<setTeachers />} {/*display teachers view based on this state*/}
+          </Stack>
+          <Typography>These buttons simulate the login system for teachers and students</Typography>
         </Drawer>
       </Box>
     </Box>

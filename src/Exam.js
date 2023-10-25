@@ -2,6 +2,7 @@ import React from 'react'
 import Box from '@mui/material/Box';
 import Password from './components/Password';
 import { Paper, Typography } from '@mui/material';
+import Metamask from './Metamask';
 
 const Exam = () => {
   return (
@@ -16,18 +17,20 @@ const Exam = () => {
         Date: 1st December 2023, Time: 1:00pm
         </Typography> {/*important details like date and time*/}
 
-        <Typography variant="h6" paddingTop='100px' paddingLeft='50px' paddingRight='50px'>
+        <Typography variant="h6" paddingTop='100px' paddingBottom='50px' paddingLeft='50px' paddingRight='50px'>
         Please read all the instructions carefully. 
-      Do not start the exam until you are told to do so. This exam contains 3 multiple-choice questions. 
-      If you have any queries at any point of the examination, please alert the examiners. 
-      This is a 30 minutes paper.
+        Do not start the exam until you are told to do so. This exam contains 3 questions. 
+        If you have any queries at any point of the examination, please alert the examiners. 
+        This is a 30 seconds paper.
         </Typography> {/*instructions*/}
       </Box>
 
-      <Box textAlign= 'center' paddingTop='210px'>(put a password text box and then once student enters password correctly, it will take them to exam page DO THIS IN SOLIDITY?)
-      </Box>
+      {/*<Box textAlign= 'center' paddingTop='210px'>(put a password text box and then once student enters password correctly, it will take them to exam page DO THIS IN SOLIDITY?)
+      </?Box>
       <Password/> {/*introducing a feature that allows students to only take exam when they should*/}
       
+      <Metamask/>
+      <Typography variant='h3'>INSERT A PASSWORD SECTION THE NEXT ROUND</Typography>
       </Paper>
     </div>
   )
