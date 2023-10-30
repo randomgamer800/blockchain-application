@@ -1,6 +1,6 @@
+//this file is for the exam page
 import React from 'react'
 import Box from '@mui/material/Box';
-import Password from './components/Password';
 import { Paper, Typography } from '@mui/material';
 import Metamask from './Metamask';
 
@@ -8,7 +8,7 @@ const Exam = () => {
   return (
     <div>
       <Paper style={{ background: '#ff7f50', minHeight: '100vh'}}> {/*paper element is used to colour the background*/}
-      <Box textAlign= 'center' paddingTop='120px'> {/*BOX element is used to contain the text*/}
+      <Box textAlign= 'center' paddingTop='120px' paddingLeft='10px' paddingRight='10px'> {/*BOX element is used to contain the text*/}
         <Typography variant="h1">
         EE Exam
         </Typography> {/*title of exam*/}
@@ -30,7 +30,7 @@ const Exam = () => {
       <Password/> {/*introducing a feature that allows students to only take exam when they should*/}
       
       <Metamask/>
-      <Typography variant='h3'>INSERT A PASSWORD SECTION THE NEXT ROUND</Typography>
+
       </Paper>
     </div>
   )

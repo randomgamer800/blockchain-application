@@ -1,6 +1,6 @@
-import { Button, ListItemButton, Stack, Typography } from '@mui/material';
-import React, { useState,useEffect } from 'react';
-import { Link, Navigate, Router, useNavigate } from 'react-router-dom';
+import { Button, Stack, Typography } from '@mui/material';
+import React, {useEffect,useState} from 'react';
+import {Navigate} from 'react-router-dom';
 import Web3 from 'web3';
 
 const test_edited_ABI = [
@@ -50,13 +50,16 @@ const test_edited_ABI = [
 		"type": "function"
 	}
 ]
-const test_edited_ADDRESS = '0xd9145CCE52D386f254917e481eB44e9943F39138'; // Replace with your actual contract address
+const test_edited_ADDRESS = '0xd9145CCE52D386f254917e481eB44e9943F39138'; // contract address
 
 function Metamask() {
   const [web3, setWeb3] = useState(null);
   const [contract, setContract] = useState(null);
   const [metamaskconnected, setmetamaskconnected] = useState(false); // State variable for exam status
   const [examStarted, setExamStarted] = useState(false); // State variable for exam status
+  const [DateandTime, setDateandTime] = useState(new Date().toLocaleString());  // used to show real time 
+  const epochTime = new Date().getTime() / 1000; // use this to configure when buttons are viewable(time is based on Epoch / Unix timestamp)
+
 
   const connectToMetaMask = async () => {
     if (window.ethereum) {
@@ -90,18 +93,25 @@ function Metamask() {
       console.error('Error starting the exam:', error);
     }
   };
+  
+      // Update the real time by 1 every second
+	  useEffect(() => {
+		const realtime = setInterval(() => {
+			setDateandTime(new Date().toLocaleString());//javascript function to output date and time as string https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date https://www.w3schools.com/jsref/jsref_tolocalestring.asp
+		}, 1000); //setInterval requires this 1000 as it will allow this function to be exectued every 1000ms(1second) https://developer.mozilla.org/en-US/docs/Web/API/setInterval
+		return () => clearTimeout(realtime); //need clear timeout as without it, timer will break/not function properly
+	  }, []);
 
   return (
     <div>
 	<Stack spacing={3} direction="column" justifyContent="center" alignItems="center">
-      <Button variant="contained" onClick={connectToMetaMask}>Connect to MetaMask</Button>
-      <Button variant="contained" onClick={startExam}>Connect to Exam</Button>
+	  {<Typography paddingTop='25px'>{DateandTime}</Typography>} 
+	  {epochTime > 1698564000 &&<Button variant="contained" onClick={connectToMetaMask}>Connect to MetaMask</Button>} {/* Can use website to find time in epoch and replace numbers*/}
+      {epochTime > 1698564000 &&  <Button variant="contained" onClick={startExam}>Connect to Exam</Button>}
       {/* Conditionally render the message */}
-      {metamaskconnected && <Typography paddingTop='25px'>Metamask connected!</Typography>}
+      {epochTime > 1698564000 && metamaskconnected && <Typography paddingTop='10px' paddingBottom='20px'>Metamask connected!</Typography>}
 	  {/* Conditionally render the message */}
-	  {!metamaskconnected && <Typography paddingTop='25px'>Metamask not connected! Please ensure Metamask is installed!</Typography>}
-      {/* Conditionally render the message */}
-	  {/* Conditionally render the message */}
+	  {epochTime > 1698564000 && !metamaskconnected && <Typography paddingTop='10px' paddingBottom='20px'>Metamask not connected! Please ensure Metamask is installed!</Typography>}
       {examStarted && <Typography paddingTop='35px'>Please click the button below only when you are ready to start!</Typography>}
       {examStarted && <Navigate to="/questions"><Button variant="contained" paddingTop='50px'>Start Exam</Button></Navigate>}
 	</Stack> 

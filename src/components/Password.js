@@ -1,3 +1,4 @@
+//password function which may be replaced by smart contract in final build
 import React, { useState } from 'react';
 import { Button } from '@mui/material';
 

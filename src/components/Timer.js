@@ -1,7 +1,7 @@
-import { Paper, Typography } from '@mui/material'
+//this file handles the countdown timer during the exam
+import { Typography } from '@mui/material'
 import {React, useState, useEffect } from 'react';
-import { Link, Router, useNavigate } from 'react-router-dom';
-import Home from '../Home';
+import {useNavigate } from 'react-router-dom';
 
 function Timer() {
     const [remainingtime, setremainingTime] = useState(35); // Set the initial time in seconds (cannot use hours:minutes notation due to error)
@@ -17,7 +17,7 @@ function Timer() {
       return () => clearTimeout(timer); //need clear timeout as without it, timer will break
     }, [remainingtime]);
 
-        // Decrease the time by 1 every second
+        // check time = 0 and if is, then move back to home page
         useEffect(() => {
           const timer = setInterval(() => {
             if (remainingtime === 0) {

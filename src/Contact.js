@@ -1,7 +1,7 @@
+//this is for the contact page
 import React from 'react'
 import Box from '@mui/material/Box';
-import Card from '@mui/material/Card';
-import { CardContent, Grid, TextField, Button, Paper, Typography } from '@mui/material';
+import {Grid, TextField, Button, Paper, Typography } from '@mui/material';
 
 const Contact = () => {
   return (
@@ -12,11 +12,11 @@ const Contact = () => {
         Contact
         </Typography> {/*title*/}
 
-        <Typography variant="h4" paddingTop='100px'>
+        <Typography variant="h5" paddingTop='50px' paddingLeft='10px' paddingRight='10px'>
         Is the app not working? Would you like to give feedback or suggestions for features?
         </Typography> {/*explaining how it should be used*/}
 
-        <Typography variant="h5" paddingTop='100px'>
+        <Typography variant="h5" paddingTop='50px' paddingLeft='10px' paddingRight='10px'>
         Then fill up the form below to let us know. We welcome any feedback!
         </Typography> 
 

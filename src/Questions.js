@@ -1,4 +1,4 @@
-import { Button, Paper, Typography } from '@mui/material'
+import { Button, Paper, Stack, Typography } from '@mui/material'
 import {React, useState } from 'react';
 import Timer from './components/Timer';
 
@@ -29,6 +29,13 @@ function Questions() {
         {id:0, answer: "7", Correct:true}
       ],
     },
+    {
+      question: 'You have completed the exam', //unable to complete this part
+      choices: [
+        {id:0, answer: "no", Correct:false},
+        {id:0, answer: "yes", Correct:true}
+      ],
+    },
   ]
   const [marks, setMarks] = useState(0);
   const [questionnumber, setQuestionnumber] = useState(0);
@@ -51,18 +58,20 @@ function Questions() {
       <Paper style={{ background: '#ff7f50', minHeight: '100vh'}}> {/*paper element is used to colour the background*/}
       <Timer/>
       <div>
-        <Typography variant="h4" paddingTop='50px'>{examquestions[questionnumber].question}</Typography>
-        {examquestions[questionnumber].choices.map((choice) => (
+        {questionnumber < 4 &&
+          <Typography variant="h4" paddingTop='50px'>{examquestions[questionnumber].question}</Typography>}
+        
+        <Stack direction="row" justifyContent="center" alignItems="center" spacing={3}>
+       {questionnumber < 3 && examquestions[questionnumber].choices.map((choice) => (
           <Button key={choice.id} variant="contained" onClick={() => handleAnswerClick(choice)}>{choice.answer}</Button>
         ))}
+        </Stack>
+       
       </div>
-      <Typography paddingTop="20px">
-        Correct Answers: {marks} / 3 {/*can be configured to show or not depending on examiner*/}
-        </Typography>
-
-        <Typography variant="h2">
-        IMPROVE LOGIC
-        </Typography>
+      { questionnumber === 3 && 
+      <Typography paddingTop="20px"> The examiner has made the exam score visible. 
+      Correct Answers: {marks} / 3 {/*can be configured to show or not depending on examiner*/}
+      </Typography>}
       </Paper>
     </div>
   )
