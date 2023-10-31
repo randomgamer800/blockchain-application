@@ -6,8 +6,8 @@ import Navbar from "./components/Navbar";
 import Contact from "./Contact"
 import Exam from "./Exam";
 import DenseTable from "./components/Table";
-import Metamask from './Metamask'; //FOR TESTING ONLY, NOT TO BE DEPLOYED
 import Questions from './Questions';
+import Password from './components/Password';
 
 export default function App() {
   return (
@@ -19,8 +19,8 @@ export default function App() {
           <Route path="/exam" element={<Exam/>}/>
           <Route path="/teachers" element={<DenseTable/>}/>
           <Route path="/contact" element={<Contact/>}/>
-          <Route path="/metamask" element={<Metamask/>}/>
           <Route path="/questions" element={<Questions/>}/>
+          <Route path="/password" element={<Password/>}/>
         </Routes>
       </Router>
     </div>

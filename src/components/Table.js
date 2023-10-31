@@ -10,11 +10,10 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import DeleteIcon from '@mui/icons-material/Delete';
-import SendIcon from '@mui/icons-material/Send';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import Stack from '@mui/material/Stack';
 import { Input, Typography } from '@mui/material';
+import Postquestion from './Postquestion';
 
 function createData(name, calories, fat, carbs, protein) {
   return { name, calories, fat, carbs, protein };
@@ -31,7 +30,8 @@ export default function DenseTable() {
   return (
     <Paper style={{ background: '#ff7f50', minHeight: '100vh'}}> {/*paper element is used to colour the background*/}
     <Box paddingTop='100px' paddingRight='20px' paddingLeft='20px'>
-    <TableContainer component={Paper}>
+      <Typography variant='h3'>Student results</Typography>
+      <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650}} aria-label="simple table">
         <TableHead>
           <TableRow>
@@ -62,13 +62,13 @@ export default function DenseTable() {
     </TableContainer>
 
     <Stack paddingTop='30px' spacing={3} direction="column" justifyContent="center" alignItems="center">
+    <Typography variant='h3'>Post a Question</Typography>
+    <Typography variant='h4'>Method 1 : Upload a file</Typography>
       <Input ref={upload} type='file' name='document'></Input>
       <Button variant="contained" startIcon={<CloudUploadIcon />}>
         Upload
       </Button>
-      <Typography>
-        Dont forget to Add in password before allowing access to this! NOTE THAT LIKE THE EXAM, IT SHOULD USE SOME SMART CONTRACT TO ENABLE ACCESS AND OBTAIN DATA
-      </Typography>
+        <Postquestion/>
     </Stack>
     </Box>
     </Paper>

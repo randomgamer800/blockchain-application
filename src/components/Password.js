@@ -1,33 +1,38 @@
 //password function which may be replaced by smart contract in final build
 import React, { useState } from 'react';
-import { Button } from '@mui/material';
+import { Box, Button, Paper, TextField, Typography } from '@mui/material';
+import { useNavigate } from 'react-router-dom'; 
 
 function Password() {
   const [inputText, setInputText] = useState('');
+  const navigate = useNavigate(); 
 
   function handleInputChange(event) {
     setInputText(event.target.value);
-  }
+  } //required to allow user input
 
   const handleClick = () => {
-    window.location.href = '/'; // Replace with the desired URL
+    navigate('/teachers'); // go to teachers if button is clicked
   };
 
   return (
-    <div>
-      <input
-        type="text"
-        value={inputText}
-        onChange={handleInputChange}
-      />
-      {inputText === 'Message' ? (
-        <div><p>Input matches the specific message.</p>
-        <Button onClick={handleClick}>Go to Target Page</Button>
+      <Paper style={{ background: '#ff7f50', minHeight: '100vh'}}>
+        <Box paddingTop='100px' paddingRight='20px' paddingLeft='20px'>
+        <Typography variant='h2' paddingBottom='10px'>Password</Typography>
+        <Typography variant='h5' paddingBottom='10px'>The password here is 'Message'. In a real application, password is not given.</Typography>
+        <TextField id="standard-basic" label="Password" variant="outlined" value={inputText} onChange={handleInputChange} /> {/*password field*/}
+        {inputText === 'Message' && ( 
+        <div><p>Input matches password.</p>
+        <Button variant="contained" onClick={handleClick}>Go to Teachers View</Button>
         </div>
-      ) : (
-        <p>Input does not match the specific message.</p>
-      )}
-    </div>
+        )} 
+        {inputText !== 'Message' && ( 
+        <div><p>Input DOES NOT match password.</p>
+        </div>
+        )} {/*conditional rendering based on input*/}
+        </Box>
+      </Paper>
+
   );
 }
 

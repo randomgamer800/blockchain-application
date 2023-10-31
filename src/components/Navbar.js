@@ -89,7 +89,7 @@ function Navbar(props) {
 
         {teachers && ( // Conditionally render the "Teachers View" list item based on button click
         <ListItem disablePadding onClick={handleListItemClick}>
-          <ListItemButton Link to="/blockchain-application/#/teachers">
+          <ListItemButton Link to="/blockchain-application/#/password">
             <ListItemIcon>
               <LockIcon />
             </ListItemIcon>

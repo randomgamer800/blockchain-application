@@ -1,6 +1,7 @@
 import { Button, Paper, Stack, Typography } from '@mui/material'
 import {React, useState } from 'react';
 import Timer from './components/Timer';
+import { Navigate } from 'react-router-dom';
 
 function Questions() {
 
@@ -72,6 +73,9 @@ function Questions() {
       <Typography paddingTop="20px"> The examiner has made the exam score visible. 
       Correct Answers: {marks} / 3 {/*can be configured to show or not depending on examiner*/}
       </Typography>}
+      { questionnumber === 3 && 
+        <Typography paddingTop="20px">You may close this page</Typography>
+      }
       </Paper>
     </div>
   )
