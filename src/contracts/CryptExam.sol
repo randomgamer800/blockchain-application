@@ -42,6 +42,10 @@ contract ExamContract {
         questionCount = 0;
     }
 
+    function resetTeacher(address person) public{
+        teacher = person;
+    }
+
     function postQuestion(string memory content, string[] memory options, uint correctOption) public onlyTeacher {
         require(options.length > 0, "Invalid question data");
         

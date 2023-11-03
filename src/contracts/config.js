@@ -189,6 +189,19 @@ export const CryptExam_ABI = [
 	{
 		"inputs": [
 			{
+				"internalType": "address",
+				"name": "person",
+				"type": "address"
+			}
+		],
+		"name": "resetTeacher",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
 				"internalType": "uint256",
 				"name": "durationMinutes",
 				"type": "uint256"

@@ -1,7 +1,7 @@
-//this is for the contact page
+//this is for the contact page, will implement sending of feedback to email using emailjs if there's time https://www.emailjs.com/
 import React from 'react'
 import Box from '@mui/material/Box';
-import {Grid, TextField, Button, Paper, Typography } from '@mui/material';
+import {Grid, TextField, Button, Paper, Typography} from '@mui/material';
 
 const Contact = () => {
   return (
@@ -19,23 +19,23 @@ const Contact = () => {
         <Typography variant="h5" paddingTop='50px' paddingLeft='10px' paddingRight='10px'>
         Then fill up the form below to let us know. We welcome any feedback!
         </Typography> 
-
-      <Grid container spacing={1} alignItems="center" justifyContent="center" direction="row" rowSpacing={4} columnSpacing={{ xs: 1, sm: 2, md: 3 }} padding='20px'> {/*stylings for form*/}
+        
+        <Grid container spacing={1} alignItems="center" justifyContent="center" direction="row" rowSpacing={4} columnSpacing={{ xs: 1, sm: 2, md: 3 }} padding='20px'> {/*stylings for form*/}
             <Grid item xs={8}>
               <TextField label="Name" variant="standard" fullWidth="required"/>
             </Grid>
             <Grid item xs={8}>
-            <TextField label="Email Address" variant="standard" fullWidth="required"/>
+              <TextField label="Email Address" variant="standard" fullWidth="required"/>
             </Grid>
             <Grid item xs={8}>
-            <TextField label="Message" variant="standard" fullWidth="required" multiline rows={4}/> {/*allows user 4 lines of text*/}
+              <TextField label="Message" variant="standard" fullWidth="required" multiline rows={4}/> {/*allows user 4 lines of text*/}
             </Grid>
             <Grid item xs={8}>
-            <Button variant="contained">Submit</Button>
+              <Button variant="contained">Submit</Button>
             </Grid>
-      </Grid>
+        </Grid>
        </Box>
-      </Paper>
+       </Paper>
     </div>
   )
 }
