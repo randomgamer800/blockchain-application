@@ -21,7 +21,7 @@ const Exam = () => {
           Please read all the instructions carefully. 
           Do not start the exam until you are told to do so. This exam contains 3 questions. 
           If you have any queries at any point of the examination, please alert the examiners. 
-          This is a 30 seconds paper.
+          This is a 120 seconds paper.
         </Typography> {/*instructions*/}
       </Box>
     
