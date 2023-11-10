@@ -51,34 +51,15 @@ export const CryptExam_ADDRESS = '0xd9145CCE52D386f254917e481eB44e9943F39138'
 export const CryptExam_ABI = [
 	{
 		"inputs": [],
-		"stateMutability": "nonpayable",
-		"type": "constructor"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "user",
-				"type": "address"
-			},
-			{
-				"indexed": false,
-				"internalType": "uint256[]",
-				"name": "selectedOption",
-				"type": "uint256[]"
-			}
-		],
-		"name": "AnswerSubmitted",
-		"type": "event"
-	},
-	{
-		"inputs": [],
 		"name": "endExam",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
+	},
+	{
+		"inputs": [],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
 	},
 	{
 		"anonymous": false,
@@ -132,16 +113,10 @@ export const CryptExam_ABI = [
 		"anonymous": false,
 		"inputs": [
 			{
-				"indexed": true,
-				"internalType": "uint256",
-				"name": "questionId",
-				"type": "uint256"
-			},
-			{
 				"indexed": false,
-				"internalType": "string",
-				"name": "content",
-				"type": "string"
+				"internalType": "uint256",
+				"name": "questionCount",
+				"type": "uint256"
 			}
 		],
 		"name": "QuestionPosted",
@@ -368,11 +343,6 @@ export const CryptExam_ABI = [
 			{
 				"internalType": "uint256",
 				"name": "correctOption",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "totalAnswers",
 				"type": "uint256"
 			}
 		],

@@ -14,14 +14,12 @@ contract ExamContract {
         string content;
         string[] options;
         uint correctOption;
-        uint totalAnswers;
     }
 
     mapping(uint => Question) public questions;
     mapping(address => string) public userQuestionAnswers;
 
-    event QuestionPosted(uint indexed questionId, string content);
-    event AnswerSubmitted(address indexed user, uint[] selectedOption);
+    event QuestionPosted(uint questionCount);
     event ExamStarted(uint startTime,uint StartPassword);
     event ExamEnded();
     event ReleaseSol(uint Spassword);
@@ -36,7 +34,6 @@ contract ExamContract {
         _;
     }
 
-
     constructor() {
         teacher = msg.sender;
         questionCount = 0;
@@ -48,33 +45,27 @@ contract ExamContract {
 
     function postQuestion(string memory content, string[] memory options, uint correctOption) public onlyTeacher {
         require(options.length > 0, "Invalid question data");
-        
+        require(!examActive, "Cannot post a question while the exam is active");
         questions[questionCount] = Question({
             content: content,
             options: options,
-            correctOption: correctOption,
-            totalAnswers: 0
+            correctOption: correctOption
         });
         questionCount++;
 
-        emit QuestionPosted(questionCount, content);
+        emit QuestionPosted(questionCount);
     }
 
 
     function removeQuestion(uint questionId) public onlyTeacher onlyDuringExam {
         require(questionId < questionCount, "Invalid question ID");
-
-        // Additional check to ensure the exam is not active.
         require(!examActive, "Cannot remove a question while the exam is active");
-
         // Delete the question from the questions mapping by shifting elements.
         for (uint i = questionId; i < questionCount; i++) {
             questions[i] = questions[i + 1];
         }
-
         // Decrement the question count before clearing the last element in the mapping.
         questionCount--;
-
         // Clear the last element in the mapping.
         delete questions[questionCount];
     }
@@ -123,8 +114,8 @@ contract ExamContract {
             examActive = false;
             emit ExamEnded();
         }
-        require(examActive, "The exam has ended"); // Check if the exam is still active.
-        userQuestionAnswers[msg.sender] = selectedOptions; // Store the answer index.
+        require(examActive, "The exam has ended"); 
+        userQuestionAnswers[msg.sender] = selectedOptions; 
     }
 
     function getQuestionDetails() public view returns (string[] memory content, string[][] memory options, uint[] memory correctOption) {
